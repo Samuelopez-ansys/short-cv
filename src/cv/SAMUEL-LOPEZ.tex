@@ -1,0 +1,146 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Twenty Seconds Resume/CV
+% LaTeX Template
+% Version 1.1 (8/1/17)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Carmine Spagnuolo (cspagnuolo@unisa.it) with major modifications by
+% Vel (vel@LaTeXTemplates.com)
+%
+% License:
+% The MIT License (see included LICENSE file)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[hidelinks,letterpaper]{twentysecondcv} % a4paper for A4
+
+\usepackage{hyperref}
+\usepackage{fontawesome}
+
+\urlstyle{same} % Force URLs to have the same font style as the rest of the document
+
+%----------------------------------------------------------------------------------------
+%	 PERSONAL INFORMATION
+%----------------------------------------------------------------------------------------
+
+% If you don't need one or more of the below, just remove the content leaving the command, e.g. \cvnumberphone{}
+
+\profilepic{data/profile.jpg} % Profile picture
+
+\cvname{Samuel Lopez Ruiz} % Your name
+\cvjobtitle{Application  Engineer} % Job title/career
+
+\cvdate{21 April 1992} % Date of birth
+\cvaddress{Guadalajara, Spain} % Short address/location, use \newline if more than 1 line is required
+\cvnumberphone{+34 606 02 98 33} % Phone number
+\cvgithub{\href{https://www.github.com/Samuelopez-ansys}{RobPasMue}} % GitHub Profile
+\cvsite{\url{https://www.linkedin.com/in/samuelopez5}} % Personal website
+\cvmail{samuelopez5@hotmail.com} % Email address
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	 ABOUT ME
+%----------------------------------------------------------------------------------------
+
+\aboutme{Telecommunication engineer with a main focus on high-frequency simulation.
+My main interests are related to computational electromagnectics, simulation, and automation.} % To have no About Me section, just remove all the text and leave \aboutme{}
+
+%----------------------------------------------------------------------------------------
+%	 SKILLS
+%----------------------------------------------------------------------------------------
+
+% Skill bar section, each skill must have a value between 0 an 6 (float)
+\skills{{MATLAB/3.7}, {Python/5.0}, {C/2.0}}
+
+%------------------------------------------------
+
+% Skill text section, each skill must have a value between 0 an 6
+\skillstext{{Spanish/Mother tongue},{English/C1*}}
+
+%----------------------------------------------------------------------------------------
+
+\makeprofile % Print the sidebar
+
+%----------------------------------------------------------------------------------------
+%	 EXPERIENCE
+%----------------------------------------------------------------------------------------
+
+\section{Experience}
+
+\begin{twenty} % Environment for a list with descriptions
+	\twentyitem{2018/-}{Lead Application Engineer}{ANSYS}{As a High-Frequency application engineer in ANSYS, part of my job is to implement electromagnetic simulation solutions in engineering processes. PyAEDT main contributor.}
+	\twentyitem{2017/18}{Antenna Engineer}{TTI}{Design of passive devices for satellite communication applications.}
+	\twentyitem{2013/17}{RF Engineer}{Yebes Observatory}{Design and measurement of components and systems in millimeter frequencies for radio astronomy and geospatial applications.}
+	% \twentyitem{2013/18}{Support classes for Baccalaureate students}{Private teacher}{University Access Exams and Baccalaureate, in STEM subjects.}
+	%\twentyitem{<dates>}{<title>}{<location>}{<description>}
+\end{twenty}
+
+%----------------------------------------------------------------------------------------
+%	 EDUCATION
+%----------------------------------------------------------------------------------------
+
+\section{Education}
+
+\begin{twenty} % Environment for a list with descriptions
+	\twentyitemdouble{2017/19}{M.Sc. Telecommunication Engineering}{UAH}{Focus on communication systems and electromagnectic simulations}{Master thesis: \textit{Desarrollo de sistemas alimentadores multihaz en ondas milimétricas para observaciones radioastronómicas simultáneas}}
+	\twentyitemdouble{2013/17}{B.Sc. Telecommunication Engineering}{UAH}{Focus on communication systems and electromagnectic simulations}{Bachelor thesis: \textit{Optimización de elementos de RFID con aplicaciones para el seguimiento de juegos de azar}}
+	% \twentyitem{2007/13}{High school and Baccalaureate}{CISTA}{Focus on mathematics, physics and new technologies.}
+	%\twentyitem{<dates>}{<title>}{<location>}{<description>}
+\end{twenty}
+
+%----------------------------------------------------------------------------------------
+%	 COURSES
+%----------------------------------------------------------------------------------------
+
+\section{Additional Courses}
+
+\begin{twentyshort} % Environment for a short list with no descriptions
+	%\twentyitemshort{2019}{Java Programming Masterclass for SW Developers \hfill 80h}
+	%\twentyitemshort{2019}{C++ Basics and Introduction to C \hfill 25h}
+	%\twentyitemshort{2019}{Oracle Java SE Programming \hfill 25h}
+	%\twentyitemshort{2018}{Design thinking course at UC3M \hfill 23h}
+	%\twentyitemshort{2018}{AIRBUS: Innovative thinking \hfill 12h}
+	%\twentyitemshort{2015}{CATIA V5-6: An introduction to CAD \hfill 40h}
+	%\twentyitemshort{2012}{Leisure Activity Organizer and Instructor \hfill 160h}
+	%\twentyitemshort{<dates>}{<title/description>}
+\end{twentyshort}
+
+%----------------------------------------------------------------------------------------
+%	 AWARDS
+%----------------------------------------------------------------------------------------
+
+\section{Awards}
+
+\begin{twentyshort} % Environment for a short list with no descriptions
+	%\vspace{0.2cm}
+	%\twentyitemshort{2015/16}{ERASMUS+ Exchange Program scholarship - 1 full academic year at the Universität Stuttgart}
+	%\vspace{0.2cm}
+	%\twentyitemshort{2013/18}{Modules with honours: Propulsion Systems, Engineering Graphics, Advanced Mathematics, Fluid Mechanics, Thermal Engineering (6 ECTS each) and Aerospace Project Management (3 ECTS)}
+	%\twentyitemshort{2013/15}{\textit{"Excellent academic record"} scholarship for university students}
+	% \twentyitemshort{2013}{Spanish Baccalaureate with honours. Mark: 10 out of 10}
+	% \twentyitemshort{2011}{Spanish Secondary High School with honours. Mark: 10 out of 10}
+	%\twentyitemshort{<dates>}{<title/description>}
+\end{twentyshort}
+
+%----------------------------------------------------------------------------------------
+%	 INTERESTS
+%----------------------------------------------------------------------------------------
+
+\section{Interests}
+
+%\small{I am a very active person who performs regularly multiple team sports, such as football and rugby. I also enjoy travelling and getting to know different cultures, since I consider it a mind-opening experience. I also enjoy living abroad (+6 years over my life).}
+\vfill
+\flushright\textit{CV was last updated on \today}
+%----------------------------------------------------------------------------------------
+
+\end{document}
