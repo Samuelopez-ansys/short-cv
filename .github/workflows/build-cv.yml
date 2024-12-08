@@ -9,10 +9,6 @@ on:
     branches:
       - main
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   build_latex:
     name: Build the LaTeX CV
@@ -28,18 +24,23 @@ jobs:
           working_directory: src/cv
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode -outdir=out
 
+      - name: Copy generated files to a new directory
+        run: |
+          mkdir -p output
+          cp -r src/cv/out/* output/
+
       - name: Disable Jekyll for GitHub Pages
-        run: echo > src/cv/out/.nojekyll
+        run: echo > output/.nojekyll
 
       - name: Add a basic index.html
         run: |
-          echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Samuel López CV</title></head><body><h1>Samuel López CV</h1><p><a href="SAMUEL-LOPEZ.pdf">Download CV (PDF)</a></p></body></html>' > src/cv/out/index.html
+          echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Samuel López CV</title></head><body><h1>Samuel López CV</h1><p><a href="SAMUEL-LOPEZ.pdf">Download CV (PDF)</a></p></body></html>' > output/index.html
 
       - name: Upload PDF as an artifact
         uses: actions/upload-artifact@v4
         with:
           name: SAMUEL-LOPEZ-CV
-          path: src/cv/out/SAMUEL-LOPEZ.pdf
+          path: output/SAMUEL-LOPEZ.pdf
           retention-days: 7
 
       - name: Deploy CV to GitHub Pages
@@ -47,7 +48,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
-          folder: src/cv/out
+          folder: output
           clean: true
           single-commit: true
 
@@ -56,4 +57,4 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            ./src/cv/out/SAMUEL-LOPEZ.pdf
+            ./output/SAMUEL-LOPEZ.pdf
