@@ -44,7 +44,7 @@ jobs:
           retention-days: 7
 
       - name: Deploy CV to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.6.9
+        uses: JamesIves/github-pages-deploy-action@v4.7.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
