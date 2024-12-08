@@ -42,7 +42,7 @@ jobs:
           path: src/cv/out/SAMUEL-LOPEZ.pdf
           retention-days: 7
 
-      - name: Deploy CV to gh-pages
+      - name: Deploy CV to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.6.9
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
