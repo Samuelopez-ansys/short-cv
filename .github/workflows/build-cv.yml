@@ -9,7 +9,35 @@ on:
     branches:
       - main
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
+  make_linux:
+    name: Build with Makefile - Linux
+    if: github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+
+      - name: Install LaTeX build tools
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y latexmk texlive-fonts-extra
+
+      - name: Run the Makefile
+        run: |
+          make all
+
+      - name: Upload PDF as an artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SAMUEL-LOPEZ-CV-MAKEFILE-LINUX
+          path: src/cv/out/SAMUEL-LOPEZ.pdf
+          retention-days: 7
+
   build_latex:
     name: Build the LaTeX CV
     runs-on: ubuntu-latest
@@ -24,32 +52,22 @@ jobs:
           working_directory: src/cv
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode -outdir=out
 
-      - name: Copy generated files to a new directory
-        run: |
-          mkdir -p output
-          cp -r src/cv/out/* output/
-
-      - name: Disable Jekyll for GitHub Pages
-        run: echo > output/.nojekyll
-
-      - name: Add a basic index.html
-        run: |
-          echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Samuel López CV</title></head><body><h1>Samuel López CV</h1><p><a href="SAMUEL-LOPEZ.pdf">Download CV (PDF)</a></p></body></html>' > output/index.html
-
       - name: Upload PDF as an artifact
         uses: actions/upload-artifact@v4
         with:
           name: SAMUEL-LOPEZ-CV
-          path: output/SAMUEL-LOPEZ.pdf
+          path: src/cv/out/SAMUEL-LOPEZ.pdf
           retention-days: 7
 
-      - name: Deploy CV to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.7.2
+      - name: Deploy CV to gh-pages
+        if: github.ref == 'refs/heads/main'
+        uses: JamesIves/github-pages-deploy-action@v4.6.9
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
-          folder: output
+          folder: src/cv/out
           clean: true
+          clean-exclude: index.html
           single-commit: true
 
       - name: Create a CV release
@@ -57,4 +75,4 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            ./output/SAMUEL-LOPEZ.pdf
+            ./src/cv/out/SAMUEL-LOPEZ.pdf
